@@ -1,0 +1,42 @@
+<div>
+
+  <div class="dash-background-header">
+      
+  </div>
+
+  <div class="dash-background-footer">
+      <!-- <img src=".//chat_files/images/table-background.JPG" class="stretch" alt="" /> -->
+      <!-- <img src=".//chat_files/images/chrome-capture.gif" class="stretch" alt="" /> -->
+  </div>
+  <div class="rooms-window-background stretch" style="display: block;">
+      <div class="rooms-container-background" style="display: block;">
+          <br />
+          <div>
+              <form  #f="ngForm" (ngSubmit)="submit(f.value)">
+                  <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input
+                          type="text"
+                          name="username"
+                          class="form-control"
+                          id="username"
+                          placeholder="Enter username..."
+                          [(ngModel)]='usernameVal'  
+                          #username="ngModel"
+                          required
+                        />
+                        <div *ngIf="username.touched && ! username.valid">
+                          <div *ngIf="username.errors.required">
+                            Username is required
+                          </div>
+                        </div>
+                  </div>
+                  
+                  
+                  <button type="submit" [disabled]="!f.valid" class="btn btn-default">Join Room</button>
+                </form>
+      </div>
+  </div>
+  </div>
+
+</div>

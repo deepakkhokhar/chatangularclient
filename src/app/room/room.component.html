@@ -1,0 +1,59 @@
+<div>
+
+    <div class="dash-background-header">
+        <div class="row">
+            <div class="col-md-10">
+
+            </div>
+            <div class="col-md-1">
+                <div class="btn-group" dropdown>
+                    <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                            aria-controls="dropdown-animated">
+                            {{username}} <span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+                        role="menu" aria-labelledby="button-animated">
+                      <li role="menuitem"><a class="dropdown-item" href="#">Logout</a></li>
+                      
+                    </ul>
+                  </div>
+                
+            </div>
+            <div class="col-md-1"><button class="btn btn-primary dropdown-toggle" type="button"
+                    title="Setting"><i class="fa fa-cog"></i></button></div>
+        </div>
+    </div>
+  
+    <div class="dash-background-footer">
+        <!-- <img src=".//chat_files/images/table-background.JPG" class="stretch" alt="" /> -->
+        <!-- <img src=".//chat_files/images/chrome-capture.gif" class="stretch" alt="" /> -->
+    </div>
+    <div class="rooms-window-background stretch" style="display: block;">
+        <div class="rooms-container-background" style="display: block;">
+            <br />
+            <div class="rooms-container" *ngFor="let room of chatrooms">
+                <a [routerLink]="['/chat',username,room.name]">
+                <div class="row">
+                    <div class="col-md-1 col-sm-2 col-xs-2"><button class="btn room-icon"><i
+                                class="fa fa-wechat fa-3x"></i></button></div>
+                    <div class="col-md-5 col-sm-3 col-xs-3 text-padding">{{room.name}}
+                        <br />
+                        <div class="room-des text-padding">sala amigos</div>
+                    </div>
+                    <div class="col-md-5 col-sm-4 col-xs-4 text-padding">
+                        <i class="fa fa-user-secret"></i> moderator, clara</div>
+                    <div class="col-md-1 col-sm-3 col-xs-3 text-padding">
+                        <i class="fa fa-user-secret"></i> 1/200
+                        <br />
+                        <i class="fa fa-video-camera " title="Video Friendly Room"></i>
+                        <i class="fa fa-microphone " title="Audio Friendly Room"></i>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+  
+  </div>

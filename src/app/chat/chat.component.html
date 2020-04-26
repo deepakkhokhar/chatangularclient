@@ -1,0 +1,426 @@
+<div>
+      <div class="dash-background-header">
+          <div class="row">
+              <div class="col-md-7">
+                <div>
+                    <button id="getMedia" (click)="getMedia()">Get media</button>
+                    <button  (click)="stopMedia()">Stop</button>
+                </div>
+                <div id="videoDisplay">
+                <section id="constraints">
+                    <div id="getUserMedia">
+                        
+                        <div id="getUserMediaConstraints" class="output"></div>
+                    </div>
+            
+                </section>
+            
+                <section id="video">
+                    <div id="localVideo">
+                        <video playsinline autoplay muted></video>
+                        <div></div>
+                    </div>
+                    <div id="remoteVideo">
+                        <video playsinline autoplay muted></video>
+                        <div></div>
+                        <div id="bitrate"></div>
+                        <div id="peer"></div>
+                    </div>
+                </section>
+            </div>
+              </div>
+
+              <div class="col-md-5 header-icon">
+                <input  type="file" accept='image/*' #photoInput (change)="preview(photoInput.files)" class="photoinput">
+                  <button class="btn btn-primary dropdown-toggle" type="button" title="Setting">
+                      <i class="fa fa-rss fa-lg"></i> Start Boardcasting
+                  </button>
+                  <button class="btn btn-primary dropdown-toggle" type="button" title="Setting">
+                      <i class="fa fa-apple fa-lg"></i>
+                  </button>
+                  <button class="btn btn-primary dropdown-toggle" type="button" title="Setting">
+                      <i class="fa fa-android fa-lg"></i>
+                  </button>
+                  <button class="btn btn-primary dropdown-toggle" type="button" title="Setting">
+                      <i class="fa fa-gamepad fa-lg"></i>
+                  </button>
+                  <button class="btn btn-primary dropdown-toggle" type="button" title="Setting">
+                      <i class="fa fa-gift fa-lg"></i>
+                  </button>
+
+                  
+                    <a   title="Settings" class="btn btn-primary dropdown-toggle"
+                    [popover]="settingTemplate" placement="left">
+                      <i class="fa fa-cog fa-lg"></i>
+                  </a>
+
+              </div>
+          </div>
+      </div>
+
+      <div class="dash-background-footer">
+          <!-- <img src=".//chat_files/images/table-background.JPG" class="stretch" alt="" /> -->
+          <!-- <img src=".//chat_files/images/chrome-capture.gif" class="stretch" alt="" /> -->
+      </div>
+      <div class="rooms-window-background stretch">
+          <div class="col-md-10 chat-room">
+              <ul class="nav nav-tabs mb-3" role="tablist" id="room-tabs">
+                  <li class="nav-item">
+                      <a class="nav-link active" id="tabs-home-tab" data-toggle="pill" href="#tabs-home" role="tab" aria-controls="tabs-home" aria-selected="true"><i class="fa fa-wechat"></i>
+                        {{username}}</a>
+                  </li>
+              </ul>
+              <div class="tab-content" id="tabs-tabContent">
+                  <div class="tab-pane show active" id="tabs-home" role="tabpanel" aria-labelledby="tabs-home-tab">
+                      <ul class="chat-list" style="list-style: none;">
+                          
+                      </ul>
+                  </div>
+              </div>
+              <div class="slight-br"></div>
+              <div class="panel panel-default">
+                  <div class="panel-heading form-inline chat-panel">
+                      <div class="form-group">
+                          <select class="form-control fixed-width input-sm" id="sel1">
+                              <option>All Users</option>
+                          </select>
+                      </div>
+                      <a  tabindex="0" title="Writing Mode"
+                          [popover]="writingModeTemplate" placement="right">
+                          <img class="img-icons" src="assets/images/aicon.png"> <span class="caret"></span>
+                    </a>
+                   
+                      <a id="font-option1">
+                          <img class="img-icons" src="assets/images/t-icon.png">
+                      </a>
+                      <a  tabindex="0" title="Advanced Message"
+                          [popover]="advancedMessageTemplate" placement="right">
+                          <img class="img-icons" src="assets/images/chat-bubble-icon.png"> <span class="caret"></span>
+                    </a>
+                      
+                      
+                        <a  tabindex="0" title="Style"
+                          [popover]="styleTemplate" placement="right">
+                          <img class="img-icons" src="assets/images/color-plate.png"> <span class="caret"></span> </a>
+                      
+                        <a  tabindex="0" title="Invite Friends"
+                          [popover]="inviteFriendTemplate" placement="right">
+                          <img class="img-icons" src="assets/images/facebook.png"> <span class="caret"></span>
+                      </a>
+                      <a class="pull-right">
+                          <span class="fa fa-chevron-right"></span>
+                      </a>
+
+                  </div>
+                  <div class="panel-body">
+                      <div class="col-md-1 useimage">
+                          <img src="assets/images/user.png">
+                      </div>
+                      <div class="col-md-10">
+                          <textarea [(ngModel)]="chatbox" id="chatbox" class="form-control textarea"></textarea>
+                      </div>
+                      <div class="col-md-1 usebutton">
+                          <button type="button" (click)="sendMessage()" class="btn btn-primary">Send</button>
+                          <button type="button" (click)="Newline()" class="btn btn-primary">Newline</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-2 chat-room-feature">
+            <tabset>
+              <tab >
+                <ng-template tabHeading>
+                  <b><i class="fa fa-users"></i> 4</b>
+                </ng-template>
+                <div class="tab-pane tab-pane-feature active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row feature-head">
+                  <div class="col-md-3 useimage">
+                      <a  tabindex="0" title="Change Status" [popover]="changestatusTemplate" placement="right" popoverTitle="Change Status" container="body"><img src="assets/images/user.png" alt=""></a>
+                  </div>
+                  <div class="col-md-6">
+                      <div style="color:red; font-weight: bold;">{{username}}</div>
+                      <span style="color: #ff7e00;"><i class="fa fa-user fa-lg" title="Male"></i></span>
+                      <span style="color: #ff7e00;"><i class="fa fa-database fa-lg"></i></span>
+                      <span style="color: red;" class="text-warning">20</span>
+                  </div>
+
+
+                  <div class="col-md-3 text-right">
+                      <a  id="home-menu" tabindex="0"  title="Menu" popoverTitle="Menu" placement="left" [popover]="menuTemplate" container="body">
+                          <i class="fa fa-cog fa-lg"></i>
+                      </a>
+                      <br>
+                      <i style="color: #ff7e00;" class="fa fa-shopping-cart fa-lg"></i>
+                      <i style="color: #ff7e00;" class="fa fa-cubes fa-lg"></i>
+                  </div>
+              </div>
+              <ul class="chat-list-feature" style="list-style: none;">
+                  <li class="room-feature-list odd-feature-list"><i class="fa fa-user"></i> Fella Bella: Hello
+                  </li>
+                  <li class="room-feature-list even-feature-list"><i class="fa fa-wechat"></i> Solscotio: Hello Fella Bella</li>
+                  <li class="room-feature-list odd-feature-list"><i class="fa fa-user"></i> Fella Bella: Hello
+                  </li>
+                  <li class="room-feature-list even-feature-list"><i class="fa fa-wechat"></i> Solscotio: Hello Fella Bella</li>
+                  <li class="room-feature-list odd-feature-list"></li>
+                  <li class="room-feature-list even-feature-list"></li>
+                  <li class="room-feature-list odd-feature-list"></li>
+                  <li class="room-feature-list even-feature-list"></li>
+                  <li class="room-feature-list odd-feature-list"></li>
+                  <li class="room-feature-list even-feature-list"></li>
+                  <li class="room-feature-list odd-feature-list"></li>
+                  <li class="room-feature-list even-feature-list"></li>
+                  <li class="room-feature-list odd-feature-list"></li>
+                  <li class="room-feature-list even-feature-list"></li>
+
+              </ul>
+            </div>
+              </tab>
+              <tab>
+                <ng-template tabHeading>
+                  <b><i class="fa fa-wechat"></i> 0</b>
+                </ng-template>
+                <div class="tab-pane tab-pane-feature" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <div class="row feature-head">
+                      <div class="col-md-9">
+                          <div style="color:red; font-weight: bold;padding-left: 10px;"> <i class="fa fa-user fa-lg"></i> (members only)</div>
+                          <br>
+                      </div>
+                      <div class="col-md-3 text-right">
+                          <a id="profile-menu" tabindex="0" data-toggle="popover" title="Menu" data-trigger="focus hover" data-placement="left">
+                              <i class="fa fa-cog fa-lg"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <ul class="chat-list-feature" style="list-style: none;">
+                      <li class="room-feature-list odd-feature-list"></li>
+                      <li class="room-feature-list even-feature-list"></li>
+                      <li class="room-feature-list odd-feature-list"></li>
+                      <li class="room-feature-list even-feature-list"></li>
+                      <li class="room-feature-list odd-feature-list"></li>
+                      <li class="room-feature-list even-feature-list"></li>
+                      <li class="room-feature-list odd-feature-list"></li>
+                      <li class="room-feature-list even-feature-list"></li>
+                      <li class="room-feature-list odd-feature-list"></li>
+                      <li class="room-feature-list even-feature-list"></li>
+                      <li class="room-feature-list odd-feature-list"></li>
+                      <li class="room-feature-list even-feature-list"></li>
+                      <li class="room-feature-list odd-feature-list"></li>
+                      <li class="room-feature-list even-feature-list"></li>
+                  </ul>
+              </div>
+              </tab>
+              <tab>
+                <ng-template tabHeading>
+                  <b><i class="fa fa-wechat"></i> 4</b>
+                </ng-template>
+                <div class="tab-pane tab-pane-feature " id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                  <div class="row feature-head">
+                      <div class="col-md-9">
+                          <div style="color:red; font-weight: bold;padding-left: 10px;"> <i class="fa fa-user fa-lg"></i> {{username}} </div>
+                          <br>
+                      </div>
+                      <div class="col-md-3 text-right">
+                          <a id="contact-menu" tabindex="0" data-toggle="popover" title="Menu" data-trigger="focus hover" data-placement="left">
+                              <i class="fa fa-cog fa-lg"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <ul class="chat-list-feature" id="chat-list-feature-user" style="list-style: none;">
+                     <!-- 
+                      <li class="room-feature-list even-feature-list"><button class="btn room-icon-feature"><i
+                                  class="fa fa-wechat fa-2x"></i></button> amogis (0)
+                          <i class="fa fa-video-camera " title="Video Friendly Room"></i>
+                          <i class="fa fa-microphone " title="Audio Friendly Room"></i>
+                      </li>
+                      <li>${user.username}</li>
+                    -->
+                      
+                  </ul>
+              </div>
+              </tab>
+            </tabset> 
+          </div>
+      </div>
+  
+
+
+  <!-- popover contents -->
+  <!-- loaded popover content -->
+  <ng-template #writingModeTemplate>
+    <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-keyboard-o"></i>
+      Text Input Mode</a>
+  <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-pencil"></i>
+      Handwriting Mode</a>
+  </ng-template>
+  
+  <div id="popover-content-font-option" style="display: none">
+      <div class="">
+          <select class="form-control fixed-width input-sm">
+              <option>Tahoma</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <select class="form-control fixed-width input-sm">
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+          </select>
+      </div>
+  </div>
+  <ng-template #changestatusTemplate>
+    
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-circle"
+              style="color: green;"></i> Available</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-circle text-success"></i>
+          Busy</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-circle text-success"></i>
+          Away</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-caret-right"></i> My
+          Account</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-caret-right"></i> Change
+          Avtar</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sign-out"></i> Logout</a>
+    </ng-template>
+  <ng-template #advancedMessageTemplate>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-youtube"></i>
+          You Tube Message</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-flash"></i>
+          Send Flash Emotion</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-file-sound-o"></i>
+          Send Sound</a>
+      <button type="button"  (click)="photoInput.click()" class="list-group-item list-group-item-custom"><i class="fa fa-file-image-o"></i>
+          Send Image</button>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-quote-right"></i>
+          Predefined Messages</a>
+  </ng-template>
+
+  <ng-template #styleTemplate>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-caret-right"></i>
+          Change Background</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-caret-right"></i>
+          Change Skin</a>
+  </ng-template>
+  <ng-template #inviteFriendTemplate>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-caret-right"></i>
+          MSN Messenger</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-caret-right"></i>
+          Gmail/Gtalk</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-share-alt"></i>
+          Share</a>
+    </ng-template>
+
+  <!-- loaded popover content -->
+  
+  <ng-template #settingTemplate>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sign-in"
+              style="color: green;"></i> Switch account/Register</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sign-out"></i>
+          Logout</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-wrench"></i>
+          Options</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-user-times"></i> Ignore List</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-window-maximize"></i>
+          WhiteBoard</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-volume-off"></i> Turn off
+          Sounds</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-arrows-v"></i> Stop
+          Scrolling</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-history"></i> Open Chat
+          History</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-eraser"></i> Clear
+          Screen</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-outdent"></i> Exit Room</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-share-alt"></i> Share</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-question-circle"></i> Help</a>
+    </ng-template>
+
+    <ng-template #menuTemplate>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-search"></i>
+          Search</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-star"></i>
+          Sort by User Level</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sort-alpha-asc"></i>
+          Sort by A-Z</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sort-alpha-desc"></i>
+          Sort by Z-A</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-venus-mars"></i>
+          Sort by Gender</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-video-camera"></i>
+          Sort by Video</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-user-plus"></i>
+          Large Avtar</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-outdent"></i>
+          Left Dock</a>
+    </ng-template>
+
+  <ul id="popover-content-profile-menu" class="list-group" style="display: none">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-search"></i>
+          Search</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sort-alpha-asc"></i>
+          Sort by A-Z</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sort-alpha-desc"></i>
+          Sort by Z-A</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-venus-mars"></i>
+          Sort by Gender</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-user-plus"></i>
+          Large Avtar</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-outdent"></i>
+          Left Dock</a>
+  </ul>
+  <ul id="popover-content-contact-menu" class="list-group" style="display: none">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-search"></i>
+          Search</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sort-numeric-asc"></i>
+          Sort by Sequence</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sort-numeric-asc"></i>
+          Sort by Number of Users</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sort-alpha-asc"></i>
+          Sort by A-Z</a>
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-sort-alpha-desc"></i>
+          Sort by Z-A</a>
+      <hr class="menu-separator">
+      <a href="#" class="list-group-item list-group-item-custom"><i class="fa fa-outdent"></i>
+          Left Dock</a>
+  </ul>
+  <ul id="popover-content-add-smiley" class="" style="display: none;list-style: none;">
+      <ul class="list-unstyled charset-ref-compact">
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F600&amp;decimal=128512&amp;unicodeName=GRINNING_FACE" title="GRINNING FACE">😀</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F601&amp;decimal=128513&amp;unicodeName=GRINNING_FACE_WITH_SMILING_EYES" title="GRINNING FACE WITH SMILING EYES">😁</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F602&amp;decimal=128514&amp;unicodeName=FACE_WITH_TEARS_OF_JOY" title="FACE WITH TEARS OF JOY">😂</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F923&amp;decimal=129315&amp;unicodeName=ROLLING_ON_THE_FLOOR_LAUGHING" title="ROLLING ON THE FLOOR LAUGHING">🤣</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F603&amp;decimal=128515&amp;unicodeName=SMILING_FACE_WITH_OPEN_MOUTH" title="SMILING FACE WITH OPEN MOUTH">😃</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F604&amp;decimal=128516&amp;unicodeName=SMILING_FACE_WITH_OPEN_MOUTH_AND_SMILING_EYES_≊_smiling_face_with_open_mouth_&amp;_smiling_eyes" title="SMILING FACE WITH OPEN MOUTH AND SMILING EYES ≊,smiling face with open mouth &amp; smiling eyes">😄</a>
+          </li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F605&amp;decimal=128517&amp;unicodeName=SMILING_FACE_WITH_OPEN_MOUTH_AND_COLD_SWEAT_≊_smiling_face_with_open_mouth_&amp;_cold_sweat" title="SMILING FACE WITH OPEN MOUTH AND COLD SWEAT ≊,smiling face with open mouth &amp; cold sweat">😅</a>
+          </li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F606&amp;decimal=128518&amp;unicodeName=SMILING_FACE_WITH_OPEN_MOUTH_AND_TIGHTLY-CLOSED_EYES_≊_smiling_face_with_open_mouth_&amp;_closed_eyes" title="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES ≊,smiling face with open mouth &amp; closed eyes">😆</a>
+          </li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F609&amp;decimal=128521&amp;unicodeName=WINKING_FACE" title="WINKING FACE">😉</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F60A&amp;decimal=128522&amp;unicodeName=SMILING_FACE_WITH_SMILING_EYES" title="SMILING FACE WITH SMILING EYES">😊</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F60B&amp;decimal=128523&amp;unicodeName=FACE_SAVOURING_DELICIOUS_FOOD" title="FACE SAVOURING DELICIOUS FOOD">😋</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F60E&amp;decimal=128526&amp;unicodeName=SMILING_FACE_WITH_SUNGLASSES" title="SMILING FACE WITH SUNGLASSES">😎</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F60D&amp;decimal=128525&amp;unicodeName=SMILING_FACE_WITH_HEART-SHAPED_EYES_≊_smiling_face_with_heart-eyes" title="SMILING FACE WITH HEART-SHAPED EYES ≊,smiling face with heart-eyes">😍</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F618&amp;decimal=128536&amp;unicodeName=FACE_THROWING_A_KISS" title="FACE THROWING A KISS">😘</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F617&amp;decimal=128535&amp;unicodeName=KISSING_FACE" title="KISSING FACE">😗</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F619&amp;decimal=128537&amp;unicodeName=KISSING_FACE_WITH_SMILING_EYES" title="KISSING FACE WITH SMILING EYES">😙</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F61A&amp;decimal=128538&amp;unicodeName=KISSING_FACE_WITH_CLOSED_EYES" title="KISSING FACE WITH CLOSED EYES">😚</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=263A&amp;decimal=9786&amp;unicodeName=WHITE_SMILING_FACE_≊_smiling_face" title="WHITE SMILING FACE ≊,smiling face">☺</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F642&amp;decimal=128578&amp;unicodeName=SLIGHTLY_SMILING_FACE" title="SLIGHTLY SMILING FACE">🙂</a></li>
+          <li><a target="_blank" href="/html/html_editors/scratchpad/?app=charset_ref&amp;hexadecimal=1F917&amp;decimal=129303&amp;unicodeName=HUGGING_FACE" title="HUGGING FACE">🤗</a></li>
+      </ul>
+  </ul>
+</div>

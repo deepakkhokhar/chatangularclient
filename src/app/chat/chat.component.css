@@ -1,0 +1,8 @@
+.chat-list{
+    overflow-y: scroll;
+    height: 400px;
+}
+
+.photoinput,#videoDisplay{
+    display: none;
+}
