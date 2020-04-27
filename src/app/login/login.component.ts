@@ -11,9 +11,11 @@ export class LoginComponent {
 
   title = 'clientchatfrontend';
   roomVal="JavaScript";
+  usernameVal:string;
     alertsDismiss: any = [];
     constructor(private http: HttpClient,private router:Router,private activatedRoute:ActivatedRoute) {}
     submit(value: any) {
-      this.router.navigate( [ "room/"+value.username ] );
+      console.log(value);
+     // this.router.navigate( [ "room/"+value.username ] );
     }
 }
