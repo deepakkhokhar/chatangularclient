@@ -42,7 +42,6 @@ export class ChatComponent implements OnInit {
 
     // Message from server
     this.socket.on('message', message => {
-      console.log(message);
       this.outputMessage(message);
 
       // Scroll down
@@ -56,6 +55,14 @@ export class ChatComponent implements OnInit {
       // Scroll down
       chatMessages.scrollTop = chatMessages.scrollHeight;
     });
+  }
+
+  keyPress(event: any) {
+    console.log(event);
+    if(event.which === 13 && !event.shiftKey){
+      this.sendMessage();
+      event.preventDefault();
+    }
   }
   
   getMedia() {
@@ -81,7 +88,7 @@ export class ChatComponent implements OnInit {
     (<MediaStream>video.srcObject).getTracks().forEach( stream => stream.stop());
     video.srcObject = null;
   }
-  
+
   preview(files) {
     if (files.length === 0)
       return;
@@ -127,7 +134,7 @@ outputMessage(message) {
   const li = document.createElement('li');
   li.classList.add('message-list');
   li.classList.add('odd-message-list');
-  li.innerHTML = `<i class="fa fa-user"></i> ${message.username}: ${message.text}`;
+  li.innerHTML = `<i class="fa fa-user"></i> ${message.username}: ${message.text.replace(/\n\r?/g, "<br />")}`;
   document.querySelector('.chat-list').appendChild(li);
 }
 
@@ -144,7 +151,6 @@ outputUsers(users) {
 }
 
 sendMessage(){
-  
  if(this.chatbox){
  this.socket.emit('chatMessage', this.chatbox);
  this.chatbox='';
@@ -152,8 +158,8 @@ sendMessage(){
 }
 
 Newline(){
-
+  this.chatbox=this.chatbox+'\n';
+  document.getElementById('chatbox').focus();
 }
-
 
 }
