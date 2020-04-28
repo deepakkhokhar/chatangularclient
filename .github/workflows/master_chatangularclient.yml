@@ -22,11 +22,14 @@ jobs:
 
     - name: npm install, build, and test
       run: |
-        npm start
+        npm install
+        npm run build --if-present
+        npm run test --if-present
+
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v1
       with:
         app-name: 'chatangularclient'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_59675beb9e5740d4a12a4d60d9f592c9 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_87bd530cee7843a485b2053213273eb8 }}
         package: .
