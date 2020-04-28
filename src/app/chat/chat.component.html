@@ -50,7 +50,7 @@
 
                   
                     <a   title="Settings" class="btn btn-primary dropdown-toggle"
-                    [popover]="settingTemplate" placement="left">
+                    [popover]="settingTemplate" placement="left" triggers="focus">
                       <i class="fa fa-cog fa-lg"></i>
                   </a>
 
@@ -86,7 +86,7 @@
                           </select>
                       </div>
                       <a  tabindex="0" title="Writing Mode"
-                          [popover]="writingModeTemplate" placement="right">
+                          [popover]="writingModeTemplate" placement="right" triggers="focus">
                           <img class="img-icons" src="assets/images/aicon.png"> <span class="caret"></span>
                     </a>
                    
@@ -94,17 +94,17 @@
                           <img class="img-icons" src="assets/images/t-icon.png">
                       </a>
                       <a  tabindex="0" title="Advanced Message"
-                          [popover]="advancedMessageTemplate" placement="right">
+                          [popover]="advancedMessageTemplate" placement="right" triggers="focus">
                           <img class="img-icons" src="assets/images/chat-bubble-icon.png"> <span class="caret"></span>
                     </a>
                       
                       
                         <a  tabindex="0" title="Style"
-                          [popover]="styleTemplate" placement="right">
+                          [popover]="styleTemplate" placement="right" triggers="focus">
                           <img class="img-icons" src="assets/images/color-plate.png"> <span class="caret"></span> </a>
                       
                         <a  tabindex="0" title="Invite Friends"
-                          [popover]="inviteFriendTemplate" placement="right">
+                          [popover]="inviteFriendTemplate" placement="right" triggers="focus">
                           <img class="img-icons" src="assets/images/facebook.png"> <span class="caret"></span>
                       </a>
                       <a class="pull-right">
@@ -117,7 +117,7 @@
                           <img src="assets/images/user.png">
                       </div>
                       <div class="col-md-10">
-                          <textarea [(ngModel)]="chatbox" id="chatbox" class="form-control"    (keypress)="keyPress($event)"></textarea>
+                          <textarea [(ngModel)]="chatbox" id="chatbox" class="form-control"   (keydown.enter)="$event.preventDefault()" (keypress)="keyPress($event)"></textarea>
                       </div>
                       <div class="col-md-1 usebutton">
                           <button type="button" (click)="sendMessage()" class="btn btn-primary">Send</button>
@@ -135,7 +135,7 @@
                 <div class="tab-pane tab-pane-feature active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="row feature-head">
                   <div class="col-md-3 useimage">
-                      <a  tabindex="0" title="Change Status" [popover]="changestatusTemplate" placement="right" popoverTitle="Change Status" container="body"><img src="assets/images/user.png" alt=""></a>
+                      <a  tabindex="0" title="Change Status" [popover]="changestatusTemplate" placement="right" popoverTitle="Change Status" container="body" triggers="focus"><img src="assets/images/user.png" alt=""></a>
                   </div>
                   <div class="col-md-6">
                       <div style="color:red; font-weight: bold;">{{username}}</div>
@@ -146,7 +146,7 @@
 
 
                   <div class="col-md-3 text-right">
-                      <a  id="home-menu" tabindex="0"  title="Menu" popoverTitle="Menu" placement="left" [popover]="menuTemplate" container="body">
+                      <a  id="home-menu" tabindex="0"  title="Menu" popoverTitle="Menu" placement="left" [popover]="menuTemplate" container="body" triggers="focus">
                           <i class="fa fa-cog fa-lg"></i>
                       </a>
                       <br>
@@ -186,7 +186,7 @@
                           <br>
                       </div>
                       <div class="col-md-3 text-right">
-                          <a id="profile-menu" tabindex="0" data-toggle="popover" title="Menu" data-trigger="focus hover" data-placement="left">
+                          <a id="profile-menu" tabindex="0" data-toggle="popover" title="Menu" data-trigger="focus hover" data-placement="left" triggers="focus">
                               <i class="fa fa-cog fa-lg"></i>
                           </a>
                       </div>
@@ -220,7 +220,7 @@
                           <br>
                       </div>
                       <div class="col-md-3 text-right">
-                          <a id="contact-menu" tabindex="0" data-toggle="popover" title="Menu" data-trigger="focus hover" data-placement="left">
+                          <a id="contact-menu" tabindex="0" data-toggle="popover" title="Menu" data-trigger="focus hover" data-placement="left" triggers="focus">
                               <i class="fa fa-cog fa-lg"></i>
                           </a>
                       </div>

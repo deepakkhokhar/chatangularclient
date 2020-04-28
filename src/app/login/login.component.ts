@@ -16,6 +16,6 @@ export class LoginComponent {
     constructor(private http: HttpClient,private router:Router,private activatedRoute:ActivatedRoute) {}
     submit(value: any) {
       console.log(value);
-     // this.router.navigate( [ "room/"+value.username ] );
+      this.router.navigate( [ "room/"+value.username ] );
     }
 }
